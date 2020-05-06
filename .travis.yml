@@ -1,0 +1,25 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t sirasaoa/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true sirasaoa/react-test npm test -- --coverage
+
+after_success:
+    - docker build -t sirasaoa/multi-client ./client
+    - docker build -t sirasaoa/nulti-nginx ./nginx
+    - docker build -t sirasaoa/multi-server ./server
+    - docker build -t sirasaoa/multi-worker ./worker
+
+    #Log in to the Docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+    #Push images to Docker Hub
+    - docker push sirasaoa/multi-client
+    - docker push sirasaoa/multi-nginx
+    - docker push sirasaoa/multi-server
+    - docker push sirasaoa/multi-worker
+
