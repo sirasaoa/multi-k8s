@@ -6,7 +6,7 @@ before_install:
     - docker build -t sirasaoa/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true sirasaoa/react-test npm test -- --coverage
+    - docker run -e CI=true sirasaoa/react-test npm run test -- --coverage
 
 after_success:
     - docker build -t sirasaoa/multi-client ./client
@@ -22,4 +22,3 @@ after_success:
     - docker push sirasaoa/multi-nginx
     - docker push sirasaoa/multi-server
     - docker push sirasaoa/multi-worker
-
