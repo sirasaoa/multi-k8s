@@ -10,7 +10,7 @@ script:
 
 after_success:
     - docker build -t sirasaoa/multi-client ./client
-    - docker build -t sirasaoa/nulti-nginx ./nginx
+    - docker build -t sirasaoa/multi-nginx ./nginx
     - docker build -t sirasaoa/multi-server ./server
     - docker build -t sirasaoa/multi-worker ./worker
 
