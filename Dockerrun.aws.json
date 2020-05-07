@@ -1,0 +1,37 @@
+{
+"AWSEBDockerrunVersion": 2,
+"containerDefinitions": 
+[
+{
+    "name": "client",
+    "image": "sirasaoa/multi-client",
+    "hostname": "client",
+    "essential": false
+},
+{
+    "name": "server",
+    "image": "sirasaoa/multi-server",
+    "hostname": "api",
+    "essential": false
+},
+{
+    "name": "worker",
+    "image": "sirasaoa/multi-worker",
+    "hostname": "worker",
+    "essential": false
+},
+{
+    "name": "nginx",
+    "image": "sirasaoa/multi-nginx",
+    "hostname": "nginx",
+    "essential": true,
+    "portMappings": [
+        {
+            "hostPort": 80,
+            "containerPort": 80
+        }
+                    ],
+    "links": ["client","server"]
+}
+]
+}
