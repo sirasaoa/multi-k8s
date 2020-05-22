@@ -18,5 +18,5 @@ kubectl apply -f k8s
 
 #Imperative command to use GIT SHA tags of all images in kubernetes cluster
 kubectl set image deployments/server-deployment server=sirasaoa/multi-server:$SHA
-kubectl set image deployments/client-deployment server=sirasaoa/multi-client:$SHA
-kubectl set image deployments/worker-deployment server=sirasaoa/multi-worker:$SHA
+kubectl set image deployments/client-deployment client=sirasaoa/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=sirasaoa/multi-worker:$SHA
